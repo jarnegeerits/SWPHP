@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
-@section('content')
+{{-- @include('sweetalert::alert') --}}
+@section('title', 'Dashboard')
+@section('dashcontent')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

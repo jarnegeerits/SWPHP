@@ -4540,7 +4540,9 @@ input[type=button].btn-block {
   flex-grow: 1;
   text-align: center;
 }
-
+.navhover:hover {
+    color: rgb(221, 221, 221) !important;
+}
 .tab-content > .tab-pane {
   display: none;
 }

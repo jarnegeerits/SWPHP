@@ -18,8 +18,8 @@
     <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <link href="/css/stylish-portfolio.css" rel="stylesheet">
-
-    <title>@yield('title')</title>
+    @include('sweetalert::alert')
+    <title>{{ config('app.name') }} - @yield('title')</title>
 </head>
 <body>
 

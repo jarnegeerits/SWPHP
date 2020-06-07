@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'SocialWheels')
+@section('title', 'Home')
 
 @section('content')
 
@@ -17,7 +17,7 @@
             <a class="js-scroll-trigger" href="#page-top">Home</a>
         </li>
         <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="#dashboard">Dashboard</a>
+            <a class="js-scroll-trigger" href="/home">Dashboard</a>
         </li>
         <li class="sidebar-nav-item">
             <a class="js-scroll-trigger" href="#contact">Contact</a>
@@ -28,7 +28,7 @@
 <!-- Header -->
 <header class="masthead d-flex">
     <div class="container text-center my-auto">
-        <h1 class="mb-1 masttext">Social Wheels</h1>
+        <h1 class="mb-1 masttext">{{ config('app.name') }}</h1>
         <h3 class="mb-5 masttext">
             <em>Sharing is caring</em>
         </h3>
@@ -201,7 +201,7 @@
                 </a>
             </li>
         </ul>
-        <p class="text-muted small mb-0">Copyright &copy; SocialWheels 2020</p>
+        <p class="text-muted small mb-0">Copyright &copy; {{ config('app.name') }} {{ now()->year }}</p>
     </div>
 </footer>
 
