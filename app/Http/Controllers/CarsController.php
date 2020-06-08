@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Car;
 use App\Membership;
 use App\User;
-use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-// use RealRashid\SweetAlert\Facades\Alert;
-// use UxWeb\SweetAlert\SweetAlert;
 
-class HomeController extends Controller {
+class CarsController extends Controller {
     /**
      * Create a new controller instance.
      *
@@ -26,12 +23,12 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
-        // Dashboard
+
+    public function cars() {
+        // Car Management
         $users = User::all();
         $cars = Car::all();
         $memberships = Membership::all();
-        // Zoekt user in db op basis van login gegevens zodat in de blade niet telkens auth::user()->variabele nodig is
         foreach ($users as $user) {
             if (Auth::user()->id == $user->id) {
                 $currentUser = $user;
@@ -54,39 +51,17 @@ class HomeController extends Controller {
                 }
             }
         }
-        // Currency icon based on user's currency
-        $currencyIcon = "fa-dollar-sign";
-        switch ($currentMembership->debtUnit) {
-            case "$":
-                $currencyIcon = "fa-dollar-sign";
-            break;
-            case "€":
-                $currencyIcon = "fa-euro-sign";
-            break;
-            case "£":
-                $currencyIcon = "fa-pound-sign";
-            break;
-        }
-        // Current poss
         $currentPoss = $currentUser->name;
         foreach ($users as $user) {
             if ($currentCar->currentPoss == $user->id) {
                 $currentPoss = $user->name;
             }
         }
-
-        // View inladen met de nodige vars
-        return view('home', [
+        return view('cars', [
             'user' => $currentUser,
             'car' => $currentCar,
             'membership' => $currentMembership,
-            'currencyIcon' => $currencyIcon,
-            'fuelPercentage' => $fuelpercentage,
             'currentPoss' => $currentPoss,
-            ]);
-    }
-    public function members() {
-        // Member Management
-        return view('members');
+        ]);
     }
 }

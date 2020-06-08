@@ -18,5 +18,5 @@ Route::get('/', 'LandingController@landingLoad');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/cars', 'HomeController@cars');
+Route::get('/cars', 'CarsController@index');
 Route::get('/members', 'HomeController@members');
