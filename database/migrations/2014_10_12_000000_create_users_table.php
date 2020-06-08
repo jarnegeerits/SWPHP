@@ -31,11 +31,11 @@ class CreateUsersTable extends Migration
             $table->string('model');
             $table->integer('fuelCap');
             $table->integer('currentFuel');
-            $table->integer('fuelUnit');
+            $table->string('fuelUnit');
             $table->integer('currentPoss');
         });
 
-        Schema::create('membership', function (Blueprint $table) {
+        Schema::create('memberships', function (Blueprint $table) {
             $table->id();
             $table->integer('carId');
             $table->integer('userId');
