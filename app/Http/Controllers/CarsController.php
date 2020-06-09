@@ -45,10 +45,6 @@ class CarsController extends Controller {
         foreach ($cars as $car) {
             if ($currentMembership->carId == $car->id) {
                 $currentCar = $car;
-                $fuelpercentage = ($currentCar->currentFuel / $currentCar->fuelCap * 100);
-                if ($fuelpercentage > 100) {
-                    $fuelpercentage = 100;
-                }
             }
         }
         $currentPoss = $currentUser->name;
