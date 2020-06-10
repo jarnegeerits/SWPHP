@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cars', 'CarsController@cars');
+Route::get('/createCars/images', 'CarsController@carpic');
 Route::get('/members', 'HomeController@members');

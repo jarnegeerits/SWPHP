@@ -60,4 +60,18 @@ class CarsController extends Controller {
             'currentPoss' => $currentPoss,
         ]);
     }
+
+    // public function carpic() {
+    //     // Car Picture: Default bij elke auto
+    //     $data = request() -> validate([
+    //         'caption' => 'required',
+    //         'image' => ['required', 'image'],
+    //     ]);
+        
+    //     dd(request('image'));
+
+    //     auth()->user()->cars()->create($data);
+
+    //     dd(request()->all());
+    // }
 }
