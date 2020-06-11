@@ -28,12 +28,7 @@ class CreatorController extends Controller {
         $newCar->save();
         toast('Getting everything ready!','info');
         return $this->postNewMembership();
-        // return redirect('/newmembership');
     }
-    // public function constructNewMembership() {
-    //     return redirect('/postnewcar');
-
-    // }
     public function postNewMembership() {
         $newMemberCar = Car::where('currentPoss', Auth::user()->id)->first();
         $newMembership = new Membership();
@@ -45,6 +40,9 @@ class CreatorController extends Controller {
         $newMembership->save();
         Alert::success('All done', 'Lets get started!');
         return redirect('/home');
+    }
+    public function postJoinCar(Request $request) {
+
     }
 
 }
