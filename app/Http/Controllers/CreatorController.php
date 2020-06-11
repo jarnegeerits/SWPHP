@@ -41,7 +41,25 @@ class CreatorController extends Controller {
         Alert::success('All done', 'Lets get started!');
         return redirect('/home');
     }
+
+    public function constructJoinCar() {
+        return view('new.joinCar');
+    }
+
     public function postJoinCar(Request $request) {
+        $newJoinHost = User::where('email', $request->carJoin)->first();
+        $newJoinHostMembership = Membership::where('userId', $newJoinHost->id)->first();
+        $newJoinUserMembership = new Membership();
+        $newJoinUserMembership->carId = $newJoinHostMembership->carId;
+        $newJoinUserMembership->userId = Auth::user()->id;
+        $newJoinUserMembership->debt = 0;
+        $newJoinUserMembership->debtUnit = "€";
+        $newJoinUserMembership->lastRefuelAmount = 0;
+        $newJoinUserMembership->save();
+
+        Alert::success('A new member has arrived!');
+        return redirect('/home');
+
 
     }
 
