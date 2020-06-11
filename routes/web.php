@@ -27,12 +27,12 @@ Route::get('/members', 'HomeController@members');
 Route::get('/newcar', 'CreatorController@constructNewCar');
 Route::post('/postnewcar', 'CreatorController@postNewCar');
 
-// NEW MEMBER FORM
-Route::post('newmembership', 'CreatorController@constructNewMembership');
+// NEW MEMBER REGISTRATION
 Route::post('/postnewmembership', 'CreatorController@postNewMembership');
 
 // JOIN CAR ROUTE
 Route::get('/joincar', 'CreatorController@constructJoinCar');
+Route::post('/postjoincar', 'CreatorController@postJoinCar');
 
 Route::get('/createCars/images', 'CarsController@carpic');
 
