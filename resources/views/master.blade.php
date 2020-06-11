@@ -18,17 +18,18 @@
     <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <link href="/css/stylish-portfolio.css" rel="stylesheet">
-    @include('sweetalert::alert')
+
+
     <title>{{ config('app.name') }} - @yield('title')</title>
 </head>
 <body>
-
+    @include('sweetalert::alert')
     @yield('content')
 
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/js/stylish-portfolio.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/stylish-portfolio.js"></script>
 
 </body>
 </html>

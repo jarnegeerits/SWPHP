@@ -57,9 +57,6 @@
                                 <button type="submit" class="btn btn-danger">
                                     {{ __('Submit New Car') }}
                                 </button>
-                                <a class="btn btn-link" href="/joincar">
-                                    Join an existing car.
-                                </a>
                             </div>
                         </div>
                     </form>

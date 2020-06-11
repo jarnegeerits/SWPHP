@@ -13,15 +13,27 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Landing page
 Route::get('/', 'LandingController@landingLoad');
 
 Auth::routes();
 
+// DASHBOARD ROUTES
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cars', 'CarsController@cars');
-Route::get('/createCars/images', 'CarsController@carpic');
 Route::get('/members', 'HomeController@members');
-Route::get('/newcar', 'CreatorController@newCar');
-Route::get('/newmembership', 'CreatorController@newMembership');
+
+// NEW CAR FORM
+Route::get('/newcar', 'CreatorController@constructNewCar');
+Route::post('/postnewcar', 'CreatorController@postNewCar');
+
+// NEW MEMBER FORM
+Route::post('newmembership', 'CreatorController@constructNewMembership');
+Route::post('/postnewmembership', 'CreatorController@postNewMembership');
+
+// JOIN CAR ROUTE
+Route::get('/joincar', 'CreatorController@constructJoinCar');
+
+Route::get('/createCars/images', 'CarsController@carpic');
+
 
