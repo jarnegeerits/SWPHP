@@ -30,7 +30,7 @@ class LoginController extends Controller
 
     // protected $redirectTo = RouteServiceProvider::HOME;
     protected function redirectTo() {
-        Alert::success('Success Title', 'Success Message');
+        Alert::success('Login complete', 'Lets get started!');
         return '/home';
     }
 

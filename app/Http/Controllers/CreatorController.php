@@ -30,11 +30,10 @@ class CreatorController extends Controller {
         return $this->postNewMembership();
         // return redirect('/newmembership');
     }
-    public function constructNewMembership() {
-        Alert::success(Auth::user()->id, "test");
-        return redirect('/postnewcar');
+    // public function constructNewMembership() {
+    //     return redirect('/postnewcar');
 
-    }
+    // }
     public function postNewMembership() {
         $newMemberCar = Car::where('currentPoss', Auth::user()->id)->first();
         $newMembership = new Membership();
