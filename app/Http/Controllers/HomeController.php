@@ -92,6 +92,24 @@ class HomeController extends Controller {
     }
     public function members() {
         // Member Management
+        $users = User::all();
+        $cars = Car::all();
+        $memberships = Membership::all();
+        // Zoekt user in db op basis van login gegevens zodat in de blade niet telkens auth::user()->variabele nodig is
+        foreach ($users as $user) {
+            if (Auth::user()->id == $user->id) {
+                $currentUser = $user;
+            }
+        }
+        // Zoekt welke membership bij de huidige user hoort
+        foreach ($memberships as $membership) {
+            if ($currentUser->id == $membership->userId) {
+                $currentMembership = $membership;
+            }
+        }
+        if (isset($currentMembership) == false) {
+            return redirect('/newcar');
+        }
         return view('members');
     }
 }

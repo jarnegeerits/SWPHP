@@ -40,6 +40,9 @@ class CarsController extends Controller {
                 $currentMembership = $membership;
             }
         }
+        if (isset($currentMembership) == false) {
+            return redirect('/newcar');
+        }
         // Zoekt welke auto bij de huidige user hoort
         $fuelpercentage = 0;
         foreach ($cars as $car) {
