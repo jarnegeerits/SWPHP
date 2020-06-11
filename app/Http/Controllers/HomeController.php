@@ -8,7 +8,8 @@ use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-// use RealRashid\SweetAlert\Facades\Alert;
+// use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 // use UxWeb\SweetAlert\SweetAlert;
 
 class HomeController extends Controller {
@@ -42,6 +43,9 @@ class HomeController extends Controller {
             if ($currentUser->id == $membership->userId) {
                 $currentMembership = $membership;
             }
+        }
+        if (isFalse(isset($currentMembership))) {
+            return redirect('/newCar');
         }
         // Zoekt welke auto bij de huidige user hoort
         $fuelpercentage = 0;

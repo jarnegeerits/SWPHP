@@ -67,7 +67,7 @@ class CarsController extends Controller {
     //         'caption' => 'required',
     //         'image' => ['required', 'image'],
     //     ]);
-        
+
     //     dd(request('image'));
 
     //     auth()->user()->cars()->create($data);

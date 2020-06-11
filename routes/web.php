@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 // use RealRashid\SweetAlert\Facades\Alert;
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cars', 'CarsController@cars');
 Route::get('/createCars/images', 'CarsController@carpic');
 Route::get('/members', 'HomeController@members');
+Route::get('/newcar', 'CreatorController@newCar');
+Route::get('/newmembership', 'CreatorController@newMembership');
+
