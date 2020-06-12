@@ -36,4 +36,6 @@ Route::post('/postjoincar', 'CreatorController@postJoinCar');
 
 Route::get('/createCars/images', 'CarsController@carpic');
 
-
+// GET AND SHOW MEMBERS
+Route::get('/members/get', 'MemberController@getMembers');
+Route::post('/members/post', 'MemberController@postMembers');
