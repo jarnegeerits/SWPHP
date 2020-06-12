@@ -12,5 +12,7 @@ class Car extends Model
         'fuelcap',
         'currentFuel',
         'fuelUnit',
+        'currentPoss',
+        'image',
     ];
 }

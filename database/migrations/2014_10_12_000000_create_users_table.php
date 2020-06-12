@@ -32,7 +32,9 @@ class CreateUsersTable extends Migration
             $table->integer('fuelCap');
             $table->integer('currentFuel');
             $table->string('fuelUnit');
+            $table->timestamps();
             $table->integer('currentPoss');
+            $table->string('image');
         });
 
         Schema::create('memberships', function (Blueprint $table) {
@@ -43,6 +45,7 @@ class CreateUsersTable extends Migration
             $table->integer('debtUnit');
             $table->integer('lastRefuelAmount');
             $table->date('lastRefuelDate');
+            $table->timestamps();
         });
     }
 
