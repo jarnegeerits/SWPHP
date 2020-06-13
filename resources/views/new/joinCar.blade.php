@@ -16,7 +16,7 @@
                             <label for="carJoin" class="col-md-4 col-form-label text-md-right">{{ __('Join a car') }}</label>
 
                             <div class="col-md-6">
-                                <input id="carJoin" type="text" class="form-control" name="carJoin" required autofocus>
+                                <input id="carJoin" type="text" class="form-control" name="carJoin" required autofocus value="E-mail">
                             </div>
                         </div>
 

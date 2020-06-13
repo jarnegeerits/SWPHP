@@ -95,7 +95,8 @@ class HomeController extends Controller {
         $users = User::all();
         $cars = Car::all();
         $memberships = Membership::all();
-        // Zoekt user in db op basis van login gegevens zodat in de blade niet telkens auth::user()->variabele nodig is
+        // Zoekt user in db op basis van login gegevens zodat in de blade niet
+        // telkens auth::user()->variabele nodig is
         foreach ($users as $user) {
             if (Auth::user()->id == $user->id) {
                 $currentUser = $user;
