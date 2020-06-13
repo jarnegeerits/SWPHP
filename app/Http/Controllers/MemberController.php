@@ -13,7 +13,7 @@ class MemberController extends Controller
     public function getMembers() {
         $carMembership = Membership::where('userId', Auth::user()->id)->first();
         $otherMembers = Membership::where('carId', $carMembership->carId)->get();
-        return view('members', []);
+        return view('members', ['member'=>$otherMembers]);
                
 }
 }
