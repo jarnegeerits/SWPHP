@@ -84,7 +84,14 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-
+.swal2-styled {
+  background-color: #f4511e !important;
+  border-color: #e3342f !important;
+  outline: none !important;
+}
+.swal2-styled:focus {
+  outline-color: #e3342f !important;
+}
 nav {
     background-color: #f4511e;
     border-color: #e3342f;
