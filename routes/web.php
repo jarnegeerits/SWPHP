@@ -21,7 +21,6 @@ Auth::routes();
 // DASHBOARD ROUTES
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cars', 'CarsController@cars');
-Route::get('/members', 'HomeController@members');
 
 // NEW CAR FORM
 Route::get('/newcar', 'CreatorController@constructNewCar');

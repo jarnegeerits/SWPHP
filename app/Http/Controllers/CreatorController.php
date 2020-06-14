@@ -59,13 +59,6 @@ class CreatorController extends Controller {
 
         Alert::success('A new member has arrived!');
         return redirect('/home');
-
-
     }
 
 }
-
-
-
-
-
