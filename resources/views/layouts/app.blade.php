@@ -26,9 +26,15 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand navhover" href="{{ url('/') }}">
-                    {{ config('app.name', 'SocialWheels') }}
-                </a>
+                @if (Auth::check())
+                    <a class="navbar-brand navhover" href="{{ url('/home') }}">
+                        {{ config('app.name', 'SocialWheels') }}
+                    </a>
+                @else
+                    <a class="navbar-brand navhover" href="{{ url('/') }}">
+                        {{ config('app.name', 'SocialWheels') }}
+                    </a>
+                @endif
                 {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button> --}}
