@@ -19,13 +19,17 @@
                     <tbody>
                         @foreach ($members as $member)
                         <tr>
-                            <th scope="col">Naam hier</th>
+                        @foreach ($users as $user)
+                                @if($member->userId == $user->id)
+                                <th scope="col">{{$user->name}}</th>
+                                @endif
+                            @endforeach
                             <th scope="col">{{$member->debt}}{{$member->debtUnit}}</th>
                             <th scope="col">{{$member->lastRefuelAmount}}</th>
                             @if(isset($member->lastRefuelDate))
-                            <th scope="col">{{$member->lastRefuelDate}}</th>        
+                                <th scope="col">{{$member->lastRefuelDate}}</th>        
                             @else
-                            <th scope="col">Never refueled</th> 
+                                <th scope="col">Never refueled</th> 
                             @endif
                         </tr>
                         @endforeach
