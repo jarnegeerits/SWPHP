@@ -49,7 +49,7 @@
                             <a class="nav-link navhover" href="{{ url('/cars') }}">{{ __('My car') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navhover" href="{{ url('/members') }}">{{ __('Members') }}</a>
+                            <a class="nav-link navhover" href="{{ url('/members/get') }}">{{ __('Members') }}</a>
                         </li>
                         @endguest
                     </ul>
