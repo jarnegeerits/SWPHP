@@ -22,11 +22,6 @@
         <li class="sidebar-nav-item">
             <a class="js-scroll-trigger" href="#contact">Contact</a>
         </li>
-        @if (Auth::check())
-        <li class="sidebar-nav-item">
-            <a class="js-scroll-trigger" href="{{ route('logout') }}">Log out</a>
-        </li>
-        @endif
     </ul>
 </nav>
 
