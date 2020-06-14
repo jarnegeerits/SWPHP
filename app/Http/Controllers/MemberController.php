@@ -15,19 +15,11 @@ class MemberController extends Controller
     public function getMembers() {
         $carMembership = Membership::where('userId', Auth::user()->id)->first();
         $otherMembers = Membership::where('carId', $carMembership->carId)->get();
-        $nameMembers = User::all();
-        // error_log($otherMembers);
         // $nameMembers = User::where('id', $otherMembers->userId)->get();
-        // error_log($otherMembers);
-        // $nameMembers = new User();
-        // foreach ($otherMembers as $otherMember) {
-        //     $nameMembers = User::where('id', $otherMember->userId)->first();
-        // }
+        $nameMembers = User::all();
         return view('members', [
             'carMembers' => $otherMembers,
             'allUsers' => $nameMembers,
         ]);
     }
 }
-
-
