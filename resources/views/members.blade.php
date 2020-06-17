@@ -17,19 +17,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($carMembers as $carMember)
+                        @foreach ($allMemberships as $currentMembership)
                         <tr>
                             @foreach ($allUsers as $currentUser)
-                                @if($carMember->userId == $currentUser->id)
+                                @if($currentMembership->userId == $currentUser->id)
                                     <th scope="col">{{$currentUser->name}}</th>
                                 @endif
                             @endforeach
-                            <th scope="col">{{$carMember->debt}}{{$carMember->debtUnit}}</th>
-                            <th scope="col">{{$carMember->lastRefuelAmount}}</th>
-                            @if(isset($carMember->lastRefuelDate))
-                                <th scope="col">{{$carMember->lastRefuelDate}}</th>        
+                            <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
+                            <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
+                            @if(isset($currentMembership->lastRefuelDate))
+                                <th scope="col">{{$currentMembership->lastRefuelDate}}</th>
                             @else
-                                <th scope="col">Never refueled</th> 
+                                <th scope="col">Never refueled</th>
                             @endif
                         </tr>
                         @endforeach
