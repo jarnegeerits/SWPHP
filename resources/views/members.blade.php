@@ -28,11 +28,17 @@
                         </thead>
                         <tbody>
                             @foreach ($allMemberships as $currentMembership)
+                            @php
+                                $stopPrint = 0;
+                            @endphp
                             @if($currentMembership->carId == $ownCar->id)
                                 <tr>
                                     @foreach ($allUsers as $currentUser)
-                                        @if($currentMembership->userId == $currentUser->id)
+                                        @if($currentMembership->userId == $currentUser->id && $stopPrint == 0)
                                             <th scope="col">{{$currentUser->name}}</th>
+                                            @php
+                                                $stopPrint = 1;
+                                            @endphp
                                         @endif
                                     @endforeach
                                     <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
