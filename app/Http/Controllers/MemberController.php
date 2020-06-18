@@ -17,13 +17,11 @@ class MemberController extends Controller
         // haalt alle memberships van de user op
         $ownMemberships = Membership::where('userId', Auth::user()->id)->get();
         foreach ($ownMemberships as $ownMembership) {
-            $userCars[] = Car::where('id', $ownMembership->carId)->get();
-            error_log($ownMembership);
-            $allMemberships = Membership::where('carId', $ownMembership->carId)->get();
-            error_log($allMemberships);
-            $otherMembersId = Membership::where('carId', $ownMembership->carId)->get();
-            foreach ($otherMembersId as $id){
-                $allUsers[] = User::where('id',$id['userId'])->first();
+            $userCars[] = Car::where('id', $ownMembership->carId)->first();
+            $memberSearch = Membership::where('carId', $ownMembership->carId)->get();
+            foreach ($memberSearch as $currentMembership){
+                $allMemberships[] = Membership::where('userId', $currentMembership->userId)->first();
+                $allUsers[] = User::where('id',$currentMembership['userId'])->first();
             }
         }
         // $nameMembers = User::where('id', $otherMembers->userId)->get();

@@ -28,27 +28,47 @@
                         </thead>
                         <tbody>
                             @foreach ($allMemberships as $currentMembership)
-                            <tr>
-                                @foreach ($allUsers as $currentUser)
-                                    @if($currentMembership->userId == $currentUser->id)
-                                        <th scope="col">{{$currentUser->name}}</th>
+                            @if($currentMembership->carId == $ownCar->id)
+                                <tr>
+                                    @foreach ($allUsers as $currentUser)
+                                        @if($currentMembership->userId == $currentUser->id)
+                                            <th scope="col">{{$currentUser->name}}</th>
+                                        @endif
+                                    @endforeach
+                                    <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
+                                    <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
+                                    @if(isset($currentMembership->lastRefuelDate))
+                                        <th scope="col">{{$currentMembership->lastRefuelDate}}</th>
+                                    @else
+                                        <th scope="col">Never refueled</th>
                                     @endif
-                                @endforeach
-                                <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
-                                <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
-                                @if(isset($currentMembership->lastRefuelDate))
-                                    <th scope="col">{{$currentMembership->lastRefuelDate}}</th>
-                                @else
-                                    <th scope="col">Never refueled</th>
-                                @endif
-                            </tr>
+                                </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <br>
     @endforeach
 </div>
-
 @endsection
+{{-- @foreach ($allMemberships as $currentMembership)
+                                @if ($currentMembership->carId == $ownCar->id)
+                                    @foreach ($allUsers as $currentUser)
+                                    <tr>
+                                        @if($currentMembership->userId == $currentUser->id)
+                                            <th scope="col">{{$currentUser->name}}</th>
+                                            <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
+                                            <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
+                                            @if(isset($currentMembership->lastRefuelDate))
+                                                <th scope="col">{{$currentMembership->lastRefuelDate}}</th>
+                                            @else
+                                                <th scope="col">Never refueled</th>
+                                             @endif
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                @endif
+                            @endforeach --}}
