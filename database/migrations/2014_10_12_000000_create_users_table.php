@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->integer('currentPoss');
             $table->string('image');
+            $table->integer('ownerId');
         });
 
         Schema::create('memberships', function (Blueprint $table) {

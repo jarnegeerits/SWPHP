@@ -14,5 +14,6 @@ class Car extends Model
         'fuelUnit',
         'currentPoss',
         'image',
+        'ownerId',
     ];
 }

@@ -25,14 +25,15 @@ class CreatorController extends Controller {
         $newCar->currentFuel = $request->carCurrentFuel;
         $newCar->fuelUnit = $request->carFuelUnit;
         $newCar->currentPoss = Auth::user()->id;
+        $newCar->ownerId = Auth::user()->id;
         $newCar->save();
         toast('Getting everything ready!','info');
-        return $this->postNewMembership();
+        return $this->postNewMembership($newCar);
     }
-    public function postNewMembership() {
-        $newMemberCar = Car::where('currentPoss', Auth::user()->id)->first();
+    public function postNewMembership($newCar) {
+        // $newMemberCar = Car::where('currentPoss', Auth::user()->id)->first();
         $newMembership = new Membership();
-        $newMembership->carId = $newMemberCar->id;
+        $newMembership->carId = $newCar->id;
         $newMembership->userId = Auth::user()->id;
         $newMembership->debt = 0;
         $newMembership->debtUnit = "€";

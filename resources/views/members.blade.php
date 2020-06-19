@@ -24,6 +24,9 @@
                                 <th scope="col">Debt</th>
                                 <th scope="col">Last Refuel in Liters</th>
                                 <th scope="col">Date of last refuel</th>
+                                @if($ownCar->ownerId == Auth::id())
+                                <th scope="col">Controls</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -41,12 +44,36 @@
                                             @endphp
                                         @endif
                                     @endforeach
-                                    <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
-                                    <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
-                                    @if(isset($currentMembership->lastRefuelDate))
-                                        <th scope="col">{{$currentMembership->lastRefuelDate}}</th>
+
+                                    @if($ownCar->ownerId == Auth::id())
+                                        <form action="/editmember" method="POST">
+                                            @csrf
+                                            <th scope="col"><input type="number" name="memberDebt" id="memberDebt"
+                                                value="{{$currentMembership->debt}}"> {{$currentMembership->debtUnit}}
+                                            </th>
+                                            <th scope="col"><input type="number" name="memberRefuel" id="memberRefuel"
+                                                value="{{$currentMembership->lastRefuelAmount}}">
+                                            </th>
+                                            @if(isset($currentMembership->lastRefuelDate))
+                                                <th scope="col"><input type="date" name="memberRefuelDate" id="memberRefuelDate"
+                                                    value="{{$currentMembership->lastRefuelDate}}">
+                                                </th>
+                                            @else
+                                                <th scope="col"><input type="date" name="memberRefuelDate" id="memberRefuelDate"></th>
+                                            @endif
+                                            <th scope="col">
+                                                <button class="btn btn-success" type="submit">Submit</button>
+                                                <button class="btn btn-danger" href="/deleteMembership">Remove Member</button>
+                                            </th>
+                                        </form>
                                     @else
-                                        <th scope="col">Never refueled</th>
+                                        <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
+                                        <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
+                                        @if(isset($currentMembership->lastRefuelDate))
+                                            <th scope="col">{{$currentMembership->lastRefuelDate}}</th>
+                                        @else
+                                            <th scope="col">Never refueled</th>
+                                        @endif
                                     @endif
                                 </tr>
                             @endif
