@@ -20,12 +20,14 @@ class MemberController extends Controller
             $userCars[] = Car::where('id', $ownMembership->carId)->first();
             $memberSearch = Membership::where('carId', $ownMembership->carId)->get();
             foreach ($memberSearch as $currentMembership){
-                $allMemberships[] = Membership::where('userId', $currentMembership->userId)->first();
+                $almostMemberships = Membership::where('userId', $currentMembership->userId)->get();
+                $allMemberships[] = $almostMemberships->where('carId', $currentMembership->carId)->first();
                 $allUsers[] = User::where('id',$currentMembership['userId'])->first();
             }
         }
         // $nameMembers = User::where('id', $otherMembers->userId)->get();
         // $nameMembers;
+        
         return view('members', [
             'ownCars' => $userCars,
             'allMemberships' => $allMemberships,

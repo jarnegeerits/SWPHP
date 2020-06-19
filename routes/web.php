@@ -41,4 +41,4 @@ Route::post('/members/post', 'MemberController@postMembers');
 
 //UPLOAD NEW CAR IMAGE
 Route::get('image-upload', 'ImageUploadController@imageUpload')->name('image.upload');
-Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
+Route::post('cars/image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
