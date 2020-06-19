@@ -73,10 +73,18 @@
                                                 <button class="btn btn-danger" type="submit">Remove Member</button>
                                         </form>
                                         </th>
+
                                         <tr>
-                                            <th scope="col">
-                                                <form action=""></form>
-                                            </th>
+                                            <form action="/members/new" method="POST">
+                                                @csrf
+                                                <th scope="col">
+                                                    <input class="form-control" type="email" name="email" id="email" placeholder="email" required>
+
+                                                </th>
+                                                <th scope="col">
+                                                    <button class="btn btn-success" type="submit">Add Member</button>
+                                                </th>
+                                            </form>
                                         </tr>
                                     @else
                                         <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
@@ -92,7 +100,9 @@
                             @endforeach
                         </tbody>
                     </table>
+
                 </div>
+
             </div>
         </div>
         <br>
