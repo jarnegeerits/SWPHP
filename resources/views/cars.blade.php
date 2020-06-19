@@ -13,7 +13,11 @@
             <img src="userimgs\{{ $user->id }}\{{ $car->image }}" class="card-img-top" alt="car image">
         @endif
         <div class="card-body">
-            <button href="cars/upload-image" class="btn btn-secondary btn-block">Upload new image</button>
+            <form action="/cars/image-upload" method="POST">
+                <input class="form-control" type="hidden" name="carId" value="{{$car->id}}">
+                <button type="submit" class="btn btn-danger form-control">Upload new image</button>
+            </form>
+
         </div>
     </div>
     @endforeach

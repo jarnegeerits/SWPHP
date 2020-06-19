@@ -37,19 +37,18 @@ class MemberController extends Controller
         ]);
     }
     public function editMember(Request $request) {
-
+        error_log("function reached");
     }
     public function removeMember(Request $request) {
-        $disabledMembership = Membership::where('id', $request)->first();
+        $disabledMembership = Membership::where('id', $request->membershipId)->first();
+        error_log('function reached');
         if ($disabledMembership->debt == 0) {
             $disabledMembership->delete();
             Alert::success('', 'Member has been removed!');
-            return redirect('/members');
+            return redirect('/members/get');
         } else {
             Alert::error('Error', 'Debt must be 0 before removal');
-            return redirect('/members');
+            return redirect('/members/get');
         }
-
-
     }
 }

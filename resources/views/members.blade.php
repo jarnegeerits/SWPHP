@@ -47,7 +47,7 @@
                                     @endforeach
 
                                     @if($ownCar->ownerId == Auth::id())
-                                        <form action="members/edit" method="POST">
+                                        <form method="POST" action="/members/edit">
                                             @csrf
                                             <th scope="col"><input class="form-control" type="number" name="memberDebt" id="memberDebt"
                                                 value="{{$currentMembership->debt}}">
@@ -66,13 +66,18 @@
                                                 <button class="btn btn-success" type="submit">Submit</button>
                                             </th>
                                         </form>
-                                        <form action="members/remove" method="POST">
-                                            @csrf
-                                            <th>
+                                        <th scope="col">
+                                            <form method="POST" action="/members/remove">
+                                                @csrf
                                                 <input class="form-control" type="hidden" name="membershipId" value="{{$currentMembership->id}}">
                                                 <button class="btn btn-danger" type="submit">Remove Member</button>
-                                            </th>
                                         </form>
+                                        </th>
+                                        <tr>
+                                            <th scope="col">
+                                                <form action=""></form>
+                                            </th>
+                                        </tr>
                                     @else
                                         <th scope="col">{{$currentMembership->debt}}{{$currentMembership->debtUnit}}</th>
                                         <th scope="col">{{$currentMembership->lastRefuelAmount}}</th>
