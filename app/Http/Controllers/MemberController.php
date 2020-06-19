@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Membership;
 use App\User;
 use App\Car;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class MemberController extends Controller
 {
     public function __construct() {
@@ -27,11 +29,27 @@ class MemberController extends Controller
         }
         // $nameMembers = User::where('id', $otherMembers->userId)->get();
         // $nameMembers;
-        
+
         return view('members', [
             'ownCars' => $userCars,
             'allMemberships' => $allMemberships,
             'allUsers' => $allUsers,
         ]);
+    }
+    public function editMember(Request $request) {
+
+    }
+    public function removeMember(Request $request) {
+        $disabledMembership = Membership::where('id', $request)->first();
+        if ($disabledMembership->debt == 0) {
+            $disabledMembership->delete();
+            Alert::success('', 'Member has been removed!');
+            return redirect('/members');
+        } else {
+            Alert::error('Error', 'Debt must be 0 before removal');
+            return redirect('/members');
+        }
+
+
     }
 }

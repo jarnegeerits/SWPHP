@@ -25,7 +25,8 @@
                                 <th scope="col">Last Refuel in Liters</th>
                                 <th scope="col">Date of last refuel</th>
                                 @if($ownCar->ownerId == Auth::id())
-                                <th scope="col">Controls</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Remove</th>
                                 @endif
                             </tr>
                         </thead>
@@ -46,24 +47,30 @@
                                     @endforeach
 
                                     @if($ownCar->ownerId == Auth::id())
-                                        <form action="/editmember" method="POST">
+                                        <form action="members/edit" method="POST">
                                             @csrf
-                                            <th scope="col"><input type="number" name="memberDebt" id="memberDebt"
-                                                value="{{$currentMembership->debt}}"> {{$currentMembership->debtUnit}}
+                                            <th scope="col"><input class="form-control" type="number" name="memberDebt" id="memberDebt"
+                                                value="{{$currentMembership->debt}}">
                                             </th>
-                                            <th scope="col"><input type="number" name="memberRefuel" id="memberRefuel"
+                                            <th scope="col"><input class="form-control" type="number" name="memberRefuel" id="memberRefuel"
                                                 value="{{$currentMembership->lastRefuelAmount}}">
                                             </th>
                                             @if(isset($currentMembership->lastRefuelDate))
-                                                <th scope="col"><input type="date" name="memberRefuelDate" id="memberRefuelDate"
+                                                <th scope="col"><input class="form-control" type="date" name="memberRefuelDate" id="memberRefuelDate"
                                                     value="{{$currentMembership->lastRefuelDate}}">
                                                 </th>
                                             @else
-                                                <th scope="col"><input type="date" name="memberRefuelDate" id="memberRefuelDate"></th>
+                                                <th scope="col"><input class="form-control" type="date" name="memberRefuelDate" id="memberRefuelDate"></th>
                                             @endif
                                             <th scope="col">
                                                 <button class="btn btn-success" type="submit">Submit</button>
-                                                <button class="btn btn-danger" href="/deleteMembership">Remove Member</button>
+                                            </th>
+                                        </form>
+                                        <form action="members/remove" method="POST">
+                                            @csrf
+                                            <th>
+                                                <input class="form-control" type="hidden" name="membershipId" value="{{$currentMembership->id}}">
+                                                <button class="btn btn-danger" type="submit">Remove Member</button>
                                             </th>
                                         </form>
                                     @else
