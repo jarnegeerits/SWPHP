@@ -50,3 +50,7 @@ Route::post('/members/remove', 'MemberController@removeMember');
 //UPLOAD NEW CAR IMAGE
 Route::get('/uploadinterface', 'UploadController@interface');
 Route::post('/upload-img', 'UploadController@imageUpload');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

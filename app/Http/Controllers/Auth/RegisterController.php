@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use App\Car;
-use App\Membership;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,8 +61,6 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \App\User
-     * @return \App\Car
-     * @return \App\Membership
      */
     protected function create(array $data)
     {
@@ -74,24 +69,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
-
-        // [
-            // User::create([
-            //     'name' => $data['name'],
-            //     'email' => $data['email'],
-            //     'password' => Hash::make($data['password']),
-            //     // 'admin' => 1,
-            // ]),
-            // Car::create([
-            //     'brand' => 'Default',
-            //     'model' => 'vehicle',
-            //     'fuelcap' => 100,
-            //     'currentFuel' => 50,
-            //     'fuelUnit' => 'L',
-            //     // 'currentPoss' => Auth::user()->id,
-            //     // 'image' => 'default.jpg',
-            // ])
-        // ];
     }
 }
