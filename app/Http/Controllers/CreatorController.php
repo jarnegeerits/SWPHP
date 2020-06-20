@@ -45,9 +45,23 @@ class CreatorController extends Controller {
     }
     public function joinSelector(Request $request) {
         $newJoinHost = User::where('email', $request->carJoin)->first();
+        if(isset($newJoinHost) == false) {
+            Alert::error('', 'User does not exist');
+            return redirect('/joincar');
+        }
         $newJoinHostMemberships = Membership::where('userId', $newJoinHost->id)->get();
+        $ownMemberships = Membership::where('userId', Auth::user()->id)->get();
         foreach ($newJoinHostMemberships as $newJoinHostMembership) {
-            $newJoinHostCars[] = Car::where('Id', $newJoinHostMembership->carId)->first();
+            $exists = 0;
+            $carFilter = Car::where('Id', $newJoinHostMembership->carId)->first();
+            foreach ($ownMemberships as $ownMembership) {
+                if ($ownMembership->carId == $carFilter->id) {
+                    $exists = 1;
+                }
+            }
+            if ($exists = 0) {
+                $newJoinHostCars[] = $carFilter;
+            }
         }
         return view('new.selectCar', [
             'hostCars' => $newJoinHostCars,

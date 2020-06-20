@@ -44,7 +44,7 @@ class MemberController extends Controller
             $editMembership->lastRefuelDate = $request->memberRefuelDate;
         }
         $editMembership->save();
-        Alert::success('', 'Edit Complete!');
+        toast('Edit Complete!','success');
         return redirect('/members/get');
     }
     public function removeMember(Request $request) {

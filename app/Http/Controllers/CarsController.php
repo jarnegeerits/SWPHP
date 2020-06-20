@@ -51,7 +51,7 @@ class CarsController extends Controller {
         $editCar->currentFuel = $request->carCurrentFuel;
         $editCar->currentPoss = $request->carCurrentPoss;
         $editCar->save();
-        Alert::success('', 'Edit Complete!');
+        toast('Edit Complete!','success');
         return redirect('/cars');
     }
     public function removeCar(Request $request) {
