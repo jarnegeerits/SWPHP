@@ -53,19 +53,20 @@ class CreatorController extends Controller {
         $ownMemberships = Membership::where('userId', Auth::user()->id)->get();
         foreach ($newJoinHostMemberships as $newJoinHostMembership) {
             $exists = 0;
-            $carFilter = Car::where('Id', $newJoinHostMembership->carId)->first();
+            $carFilter = Car::where('id', $newJoinHostMembership->carId)->first();
             foreach ($ownMemberships as $ownMembership) {
-                if ($ownMembership->carId == $carFilter->id) {
+                if ($carFilter->id == $ownMembership->carId) {
                     $exists = 1;
                 }
             }
-            if ($exists = 0) {
+            if ($exists == 0) {
                 $newJoinHostCars[] = $carFilter;
             }
         }
         return view('new.selectCar', [
             'hostCars' => $newJoinHostCars,
         ]);
+
     }
     public function postJoinCar(Request $request) {
         $joinCar = Car::where('id', $request->carSelect)->first();
