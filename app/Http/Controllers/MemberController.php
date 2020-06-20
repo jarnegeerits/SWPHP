@@ -37,18 +37,40 @@ class MemberController extends Controller
         ]);
     }
     public function editMember(Request $request) {
-        error_log("function reached");
+        $editMembership = Membership::where('id', $request->membershipId)->first();
+        $editMembership->debt = $request->memberDebt;
+        $editMembership->lastRefuelAmount = $request->memberRefuel;
+        if(isset($request->memberRefuelDate)) {
+            $editMembership->lastRefuelDate = $request->memberRefuelDate;
+        }
+        $editMembership->save();
+        Alert::success('', 'Edit Complete!');
+        return redirect('/members/get');
     }
     public function removeMember(Request $request) {
         $disabledMembership = Membership::where('id', $request->membershipId)->first();
-        error_log('function reached');
         if ($disabledMembership->debt == 0) {
             $disabledMembership->delete();
-            Alert::success('', 'Member has been removed!');
+            toast('Member has been removed!','success');
             return redirect('/members/get');
         } else {
             Alert::error('Error', 'Debt must be 0 before removal');
             return redirect('/members/get');
         }
+    }
+    public function newMember(Request $request) {
+        $newMember = User::where('email', $request->email)->first();
+        if ($newMember->id != Auth::user()->id) {
+            $newMembership = New Membership();
+            $newMembership->carId = $request->carId;
+            $newMembership->userId = $newMember->id;
+            $newMembership->save();
+            toast('Member added!','success');
+            return redirect('/members/get');
+        } else {
+            Alert::error('', 'You cannot add yourself!');
+            return redirect('/members/get');
+        }
+
     }
 }

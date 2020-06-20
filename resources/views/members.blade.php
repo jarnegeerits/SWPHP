@@ -64,6 +64,7 @@
                                             </div>
                                         @endif
                                         <div class="col-sm">
+                                            <input class="form-control" type="hidden" name="membershipId" value="{{$currentMembership->id}}">
                                             <button class="btn btn-success form-control" type="submit">Submit</button>
                                         </div>
                                     </div>
@@ -114,6 +115,7 @@
                                         <span class="input-group-text">Email</span>
                                     </div>
                                     <input class="form-control" type="email" name="email" id="email" required>
+                                    <input class="form-control" type="hidden" name="carId" value="{{$ownCar->id}}">
                                     <button class="btn btn-success" type="submit">Add Member</button>
                                 </div>
                             </form>

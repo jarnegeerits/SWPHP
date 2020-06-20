@@ -35,9 +35,6 @@ class CreatorController extends Controller {
         $newMembership = new Membership();
         $newMembership->carId = $newCar->id;
         $newMembership->userId = Auth::user()->id;
-        $newMembership->debt = 0;
-        $newMembership->debtUnit = "€";
-        $newMembership->lastRefuelAmount = 0;
         $newMembership->save();
         Alert::success('All done', 'Lets get started!');
         return redirect('/home');
@@ -46,19 +43,23 @@ class CreatorController extends Controller {
     public function constructJoinCar() {
         return view('new.joinCar');
     }
-
-    public function postJoinCar(Request $request) {
+    public function joinSelector(Request $request) {
         $newJoinHost = User::where('email', $request->carJoin)->first();
-        $newJoinHostMembership = Membership::where('userId', $newJoinHost->id)->first();
-        $newJoinUserMembership = new Membership();
-        $newJoinUserMembership->carId = $newJoinHostMembership->carId;
-        $newJoinUserMembership->userId = Auth::user()->id;
-        $newJoinUserMembership->debt = 0;
-        $newJoinUserMembership->debtUnit = "€";
-        $newJoinUserMembership->lastRefuelAmount = 0;
-        $newJoinUserMembership->save();
-
-        Alert::success('A new member has arrived!');
+        $newJoinHostMemberships = Membership::where('userId', $newJoinHost->id)->get();
+        foreach ($newJoinHostMemberships as $newJoinHostMembership) {
+            $newJoinHostCars[] = Car::where('Id', $newJoinHostMembership->carId)->first();
+        }
+        return view('new.selectCar', [
+            'hostCars' => $newJoinHostCars,
+        ]);
+    }
+    public function postJoinCar(Request $request) {
+        $joinCar = Car::where('id', $request->carSelect)->first();
+        $newMembership = new Membership();
+        $newMembership->carId = $joinCar->id;
+        $newMembership->userId = Auth::user()->id;
+        $newMembership->save();
+        Alert::success('Car joined!');
         return redirect('/home');
     }
 

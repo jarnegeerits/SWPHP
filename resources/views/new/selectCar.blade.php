@@ -6,17 +6,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('New Car') }}</div>
+                <div class="card-header">{{ __('Select Car') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/joinselector">
+                    <form method="POST" action="/postjoincar">
                         @csrf
 
                         <div class="form-group row">
                             <label for="carJoin" class="col-md-4 col-form-label text-md-right">{{ __('Join a car') }}</label>
 
                             <div class="col-md-6">
-                                <input id="carJoin" type="text" class="form-control" name="carJoin" required autofocus placeholder="E-mail">
+                                <select class="form-control" name="carSelect">
+                                    @foreach ($hostCars as $hostCar)
+                                        <option value="{{ $hostCar->id }}">{{ $hostCar->brand }} {{ $hostCar->model }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 

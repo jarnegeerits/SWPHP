@@ -18,9 +18,14 @@ Route::get('/', 'LandingController@landingLoad');
 
 Auth::routes();
 
-// DASHBOARD ROUTES
+// DASHBOARD
 Route::get('/home', 'HomeController@index')->name('home');
+
+// CARS ROUTES
 Route::get('/cars', 'CarsController@cars');
+Route::post('/cars/new', 'CarsController@newCar');
+Route::post('/cars/edit', 'CarsController@editCar');
+Route::post('/cars/remove', 'CarsController@removeCar');
 
 // NEW CAR FORM
 Route::get('/newcar', 'CreatorController@constructNewCar');
@@ -31,6 +36,7 @@ Route::post('/postnewmembership', 'CreatorController@postNewMembership');
 
 // JOIN CAR ROUTE
 Route::get('/joincar', 'CreatorController@constructJoinCar');
+Route::post('/joinselector', 'CreatorController@joinSelector');
 Route::post('/postjoincar', 'CreatorController@postJoinCar');
 
 Route::get('/createCars/images', 'CarsController@carpic');
@@ -42,5 +48,5 @@ Route::post('/members/edit', 'MemberController@editMember');
 Route::post('/members/remove', 'MemberController@removeMember');
 
 //UPLOAD NEW CAR IMAGE
-Route::get('image-upload', 'ImageUploadController@imageUpload')->name('image.upload');
-Route::post('cars/image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
+Route::get('/uploadinterface', 'UploadController@interface');
+Route::post('/upload-img', 'UploadController@imageUpload');

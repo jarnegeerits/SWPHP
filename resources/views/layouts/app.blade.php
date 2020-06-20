@@ -43,13 +43,21 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @guest
-                            <li></li>
+                            <li>
+
+                            </li>
                         @else
                         <li class="nav-item">
                             <a class="nav-link navhover" href="{{ url('/cars') }}">{{ __('My car') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navhover" href="{{ url('/members/get') }}">{{ __('Members') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navhover" href="{{ url('/newcar') }}">{{ __('New Car') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navhover" href="{{ url('/joincar') }}">{{ __('Join Car') }}</a>
                         </li>
                         @endguest
                     </ul>
@@ -74,7 +82,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/home">Dashboard</a>
+                                    <a class="dropdown-item" href="/">Landing</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

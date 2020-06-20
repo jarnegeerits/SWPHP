@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Membership;
 use App\User;
 use App\Car;
+use RealRashid\SweetAlert\Facades\Alert;
 class CarsController extends Controller {
     /**
      * Create a new controller instance.
@@ -24,35 +25,43 @@ class CarsController extends Controller {
      */
 
     public function cars() {
-        // Haalt de huidige user op
-        $currentUser = User::where('id', Auth::user()->id)->first();
-
         // Zoekt welke memberships bij de huidige user hoort
-        $memberships = Membership::where('userId', Auth::user()->id)->get();
-        foreach ($memberships as $membership) {
-            $cars[] = Car::where('id', $membership->carId)->first();
+        $ownMemberships = Membership::where('userId', Auth::user()->id)->get();
+        foreach ($ownMemberships as $ownMembership) {
+            $cars[] = Car::where('id', $ownMembership->carId)->first();
+            $memberSearch = Membership::where('carId', $ownMembership->carId)->get();
+            foreach ($memberSearch as $currentMembership){
+                $almostMemberships = Membership::where('userId', $currentMembership->userId)->get();
+                $allMemberships[] = $almostMemberships->where('carId', $currentMembership->carId)->first();
+                $allUsers[] = User::where('id',$currentMembership['userId'])->first();
+                $allUsers = array_unique($allUsers);
+            }
         }
-        if (isset($memberships) == false) {
-            return redirect('/newcar');
-        }
-        
         return view('cars', [
             'yourCars'=>$cars,
-            'user'=>$currentUser,
+            'memberships'=>$allMemberships,
+            'members'=>$allUsers,
             ]);
     }
-
-    // public function carpic() {
-    //     // Car Picture: Default bij elke auto
-    //     $data = request() -> validate([
-    //         'caption' => 'required',
-    //         'image' => ['required', 'image'],
-    //     ]);
-
-    //     dd(request('image'));
-
-    //     auth()->user()->cars()->create($data);
-
-    //     dd(request()->all());
-    // }
+    public function editCar(Request $request) {
+        $editCar = Car::where('id', $request->carId)->first();
+        $editCar->brand = $request->carBrand;
+        $editCar->model = $request->carModel;
+        $editCar->fuelCap = $request->carFuelCap;
+        $editCar->currentFuel = $request->carCurrentFuel;
+        $editCar->currentPoss = $request->carCurrentPoss;
+        $editCar->save();
+        Alert::success('', 'Edit Complete!');
+        return redirect('/cars');
+    }
+    public function removeCar(Request $request) {
+        $removeCar = Car::where('id', $request->carId)->first();
+        $removeMemberships = Membership::where('carId', $removeCar->id)->get();
+        $removeCar->delete();
+        foreach ($removeMemberships as $removeMembership) {
+            $removeMembership->delete();
+        }
+        Alert::success('', 'Car removed!');
+        return redirect('/cars');
+    }
 }
